@@ -131,3 +131,22 @@ update = function() {
     requestAnimationFrame(update);
 };
 requestAnimationFrame(update);
+
+function fadeAndReplace() {
+    var h1 = document.getElementById('header1');
+    var h2 = document.getElementById('header2');
+
+    // Apply the fade-out effect
+    h1.classList.add('fade-out');
+
+    // Wait for the fade to complete, then hide the h1 and show the h2
+    setTimeout(function() {
+        h1.style.display = 'none';
+        h2.style.opacity = '1';
+    }, 2000);  // This timeout should match the fade duration in the CSS
+}
+
+// Wait for 5 seconds after page load, then call fadeAndReplace
+window.onload = function() {
+    setTimeout(fadeAndReplace, 5000); // 5000 milliseconds = 5 seconds
+}
