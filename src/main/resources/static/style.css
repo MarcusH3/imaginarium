@@ -1,0 +1,57 @@
+body{
+    background-color: #000;
+    font-family: 'fantasy';
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    width:500px;
+    height: 450px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 60px auto;
+    text-align: center;
+    position:relative;
+    z-index: 9999;}
+.wrapper .btn-area{
+    height: 45px;
+    width: 100%;
+    background-color: #000000;
+    borarder-radius: 50px;
+    position: relative;
+    line-height: 45;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+}
+#bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+#displayedImage {
+    max-width: 100%;
+height: auto;
+margin: 20px 0;
+}
+#imageContainer {
+    width: 700px;
+    height: 500px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#imageContainer img {
+    opacity: 0.5;
+}
+
+
+
