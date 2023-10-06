@@ -15,21 +15,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class ImageControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+  @Autowired
+  private MockMvc mockMvc;
 
-    @BeforeEach
-    void setUp() {
-    }
+  @BeforeEach
+  void setUp() {
+  }
 
-    @AfterEach
-    void tearDown() {
-    }
+  @AfterEach
+  void tearDown() {
+  }
 
-    @Test
-    void fetchRandomImage() throws Exception {
-        mockMvc.perform(get("/images/random"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType("image/jpeg"));
-    }
+  @Test
+  void fetchRandomImage() throws Exception {
+    mockMvc.perform(get("/images/random"))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType("image/jpeg"));
+  }
 }

@@ -5,5 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class ImaginariumApplicationTests {
-	@Test
-	void contextLoads() {}}
+  @Test
+  void contextLoads() {
+  }
+}

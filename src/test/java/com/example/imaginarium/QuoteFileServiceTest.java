@@ -15,27 +15,27 @@ import static org.mockito.Mockito.when;
 
 public class QuoteFileServiceTest {
 
-    @InjectMocks
-    private QuoteFileService quoteFileService;
+  @InjectMocks
+  private QuoteFileService quoteFileService;
 
-    @Mock
-    private List<String> mockQuotes;
+  @Mock
+  private List<String> mockQuotes;
 
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
+  @BeforeEach
+  public void setUp() {
+    MockitoAnnotations.openMocks(this);
 
-        when(mockQuotes.size()).thenReturn(2);
-        when(mockQuotes.get(0)).thenReturn("Quote 1");
-        when(mockQuotes.get(1)).thenReturn("Quote 2");
-    }
+    when(mockQuotes.size()).thenReturn(2);
+    when(mockQuotes.get(0)).thenReturn("Quote 1");
+    when(mockQuotes.get(1)).thenReturn("Quote 2");
+  }
 
-    @Test
-    public void testGetQuotes() {
-        List<String> quotes = quoteFileService.getQuotes();
+  @Test
+  public void testGetQuotes() {
+    List<String> quotes = quoteFileService.getQuotes();
 
-        assertEquals(2, quotes.size());
-        assertEquals("Quote 1", quotes.get(0));
-        assertEquals("Quote 2", quotes.get(1));
-    }
+    assertEquals(2, quotes.size());
+    assertEquals("Quote 1", quotes.get(0));
+    assertEquals("Quote 2", quotes.get(1));
+  }
 }

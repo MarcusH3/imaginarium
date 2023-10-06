@@ -5,6 +5,7 @@ plugins {
 	id 'org.asciidoctor.jvm.convert' version '3.3.2'
 	id 'checkstyle'
 	id 'jacoco'
+
 }
 
 group = 'com.example'
@@ -62,6 +63,7 @@ checkstyle {
 	toolVersion = '10.12.4'
 	reportsDir = file("${project.buildDir}/checkstyle")
 	showViolations = true
+	maxWarnings = 5
 }
 
 

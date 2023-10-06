@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/quotes")
 public class QuoteController {
-    private final QuoteService quoteService;
+  private final QuoteService quoteService;
 
-    @Autowired
-    public QuoteController(QuoteService quoteService) {
-        this.quoteService = quoteService;
-    }
+  @Autowired
+  public QuoteController(QuoteService quoteService) {
+    this.quoteService = quoteService;
+  }
 
-    @GetMapping("/random")
-    public String getRandomQuote() {
-        return quoteService.getRandomQuote();
-    }
+  @GetMapping("/random")
+  public String getRandomQuote() {
+    return quoteService.getRandomQuote();
+  }
 }
