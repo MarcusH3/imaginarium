@@ -9,11 +9,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**.
+ * controller for images
+ */
+
 @RestController
 public class ImageController {
 
   private static final int TOTAL_IMAGES = 100;
   private final Random random = new Random();
+  /**.
+   * get random image
+   */
 
   @GetMapping("/images/random")
   public ResponseEntity<Resource> fetchRandomImage() throws IOException {

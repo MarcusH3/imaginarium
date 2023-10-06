@@ -7,9 +7,16 @@ import javax.annotation.PostConstruct;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
+/**.
+ * loads quotes from a file
+ */
+
 @Service
 public class QuoteLoader {
   private QuoteFileService quoteData;
+  /**.
+   * load quotes from file
+   */
 
   @PostConstruct
   public void loadQuotes() throws Exception {

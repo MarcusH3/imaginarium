@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**.
+ * get random quote from resources/quotes.txt
+ */
+
 @RestController
 @RequestMapping("/api/quotes")
 public class QuoteController {

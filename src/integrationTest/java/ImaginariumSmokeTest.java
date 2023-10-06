@@ -6,6 +6,10 @@ import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+/**.
+ * Smoke test for Imaginarium application
+ */
+
 public class ImaginariumSmokeTest {
   @BeforeAll
   public static void setUpClass() {
