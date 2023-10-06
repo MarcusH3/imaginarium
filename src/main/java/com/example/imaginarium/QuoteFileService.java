@@ -10,6 +10,4 @@ public class QuoteFileService {
         return quotes;
 
     }
-
-
 }
