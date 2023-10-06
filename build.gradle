@@ -8,8 +8,6 @@ plugins {
 }
 
 
-
-
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
@@ -36,6 +34,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	testImplementation 'org.testng:testng:7.1.0'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
@@ -43,6 +42,8 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.rest-assured:rest-assured:5.3.2'
+	testImplementation 'org.testcontainers:junit-jupiter'
+
 
 }
 
@@ -59,6 +60,70 @@ tasks.named('test') {
 	outputs.dir snippetsDir
 	useJUnitPlatform()
 }
+sourceSets {
+	integrationTest {
+		java.srcDir file('src/integrationTest/java')
+		resources.srcDir file('src/integrationTest/resources')
+		compileClasspath += sourceSets.main.output + sourceSets.test.output
+		runtimeClasspath += sourceSets.main.output + sourceSets.test.output
+	}
+}
+configurations {
+	integrationTestImplementation.extendsFrom testImplementation
+	integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
+}
+task integrationTest(type: Test) {
+	testClassesDirs = sourceSets.integrationTest.output.classesDirs
+	classpath = sourceSets.integrationTest.runtimeClasspath
+
+	useJUnitPlatform()
+	testLogging {
+		events "PASSED", "FAILED", "SKIPPED"
+	}
+}
+
+sourceSets {
+	systemTest {
+		java.srcDir file('src/systemTest/java')
+		resources.srcDir file('src/systemTest/resources')
+		compileClasspath += sourceSets.main.output + sourceSets.test.output
+		runtimeClasspath += sourceSets.main.output + sourceSets.test.output
+	}
+}
+configurations {
+	systemTestImplementation.extendsFrom testImplementation
+	systemTestRuntimeOnly.extendsFrom testRuntimeOnly
+}
+task systemTest(type: Test) {
+	testClassesDirs = sourceSets.systemTest.output.classesDirs
+	classpath = sourceSets.systemTest.runtimeClasspath
+
+	useJUnitPlatform()
+	testLogging {
+		events "PASSED", "FAILED", "SKIPPED"
+	}
+}
+
+
+jacoco {
+	toolVersion = "0.8.9"
+	reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+jacocoTestReport {
+	reports {
+		xml.required = true
+		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+		html.required = true
+	}
+}
+task unitTest(type: Test) {
+	useJUnitPlatform()
+	testLogging {
+		events "PASSED", "FAILED", "SKIPPED"
+	}
+	finalizedBy jacocoTestReport
+}
+
 
 tasks.named('asciidoctor') {
 	inputs.dir snippetsDir
