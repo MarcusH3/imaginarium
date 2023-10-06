@@ -111,11 +111,13 @@ particlesJS("bg", {
     "retina_detect": true
 });
 
+
+
 var myButton2 = document.getElementById("myButton1");
 var myButton1 = document.getElementById("myButton2");
 
 function fetchAndDisplayWord() {
-    fetch("http://localhost:8080/api/quotes/random")  // Corrected the URL
+    fetch("http://localhost:8080/api/quotes/random")
         .then(response => response.text())
         .then(quote => {
             myButton2.textContent = quote;
@@ -125,4 +127,30 @@ function fetchAndDisplayWord() {
         });
 }
 
-myButton1.addEventListener("click", fetchAndDisplayWord);
+function fetchAndDisplayImage() {
+    fetch("http://localhost:8080/images/random")
+        .then(response => response.blob())
+        .then(blob => {
+            var url = URL.createObjectURL(blob);
+            var img = document.createElement('img');
+            img.src = url;
+            var imageContainer = document.getElementById('imageContainer');
+
+            // Clear any previous image from the container
+            while (imageContainer.firstChild) {
+                imageContainer.removeChild(imageContainer.firstChild);
+            }
+
+            // Append the new image
+            imageContainer.appendChild(img);
+        })
+        .catch(error => {
+            console.error('There was an error fetching the image!', error);
+        });
+}
+
+myButton1.addEventListener("click", fetchAndDisplayImage);
+
+myButton1.addEventListener("click", fetchAndDisplayWord );
+
+

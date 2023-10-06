@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class QuoteLoader {
-
     private QuoteFileService quoteData;
 
     @PostConstruct
@@ -18,7 +17,6 @@ public class QuoteLoader {
         InputStream inputStream = new ClassPathResource("quote.json").getInputStream();
         this.quoteData = mapper.readValue(inputStream, QuoteFileService.class);
     }
-
     public List<String> getQuotes() {
         return quoteData.getQuotes();
     }
