@@ -1,3 +1,5 @@
+package com.example.imaginarium;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.equalTo;
@@ -22,7 +24,6 @@ public class ImaginariumSmokeTest {
                 .statusCode(200)
                 .body(notNullValue());
     }
-
     @Test
     public void fetchRandomImageEndpointShouldReturnValidImage() {
         given()

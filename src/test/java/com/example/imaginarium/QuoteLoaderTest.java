@@ -39,7 +39,7 @@ class QuoteLoaderTest {
         assertNotNull(quotes, "Quotes should not be null");
         assertFalse(quotes.isEmpty(), "Quotes should not be empty");
 
-        String exampleQuote = "This is an example quote.";  // Replace with an actual quote you expect
+        String exampleQuote = "si";
         assertTrue(quotes.contains(exampleQuote), "Expected quote not found");
     }
 }
