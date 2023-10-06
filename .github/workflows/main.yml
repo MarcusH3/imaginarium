@@ -76,5 +76,5 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew bootJar
-          java -jar build/libs/imaginarium.jar &
+          java -jar build/libs/imaginarium-0.0.1-SNAPSHOT.jar &
           ./gradlew integrationTest
