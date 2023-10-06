@@ -7,7 +7,6 @@ plugins {
 	id 'jacoco'
 }
 
-
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
@@ -73,10 +72,10 @@ tasks.named('test') {
 }
 sourceSets {
 	integrationTest {
+		compileClasspath += main.output + test.output
+		runtimeClasspath += main.output + test.output
 		java.srcDir file('src/integrationTest/java')
 		resources.srcDir file('src/integrationTest/resources')
-		compileClasspath += sourceSets.main.output + sourceSets.test.output
-		runtimeClasspath += sourceSets.main.output + sourceSets.test.output
 	}
 }
 configurations {
@@ -84,6 +83,8 @@ configurations {
 	integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
 }
 task integrationTest(type: Test) {
+	description = 'Runs the integration tests.'
+	group = 'verification'
 	testClassesDirs = sourceSets.integrationTest.output.classesDirs
 	classpath = sourceSets.integrationTest.runtimeClasspath
 
