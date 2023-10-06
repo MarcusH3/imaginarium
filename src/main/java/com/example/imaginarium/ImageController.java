@@ -15,13 +15,12 @@ import java.util.Random;
 @RestController
 public class ImageController {
 
-    // reflecting the range from 1-100
     private static final int TOTAL_IMAGES = 100;
     private final Random random = new Random();
 
     @GetMapping("/images/random")
     public ResponseEntity<Resource> fetchRandomImage() throws IOException {
-        int randomId = 1 + random.nextInt(TOTAL_IMAGES); // This will give a random number between 1 and 100 (inclusive)
+        int randomId = 1 + random.nextInt(TOTAL_IMAGES);
         String imageName = "images/img (" + randomId + ").jpg";
         Resource imgFile = new ClassPathResource(imageName);
 
