@@ -114,13 +114,15 @@ particlesJS("bg", {
 var myButton2 = document.getElementById("myButton1");
 var myButton1 = document.getElementById("myButton2");
 
-var wordsForButton2 = ["Dog", "Cat", "Fish"];
-
 function fetchAndDisplayWord() {
-    var randomIndex = Math.floor(Math.random() * wordsForButton2.length);
-
-    var randomWord = wordsForButton2[randomIndex];
-
-    myButton2.textContent = randomWord;
+    fetch("http://localhost:8080/api/quotes/random")  // Corrected the URL
+        .then(response => response.text())
+        .then(quote => {
+            myButton2.textContent = quote;
+        })
+        .catch(error => {
+            console.error('There was an error fetching the quote!', error);
+        });
 }
+
 myButton1.addEventListener("click", fetchAndDisplayWord);
