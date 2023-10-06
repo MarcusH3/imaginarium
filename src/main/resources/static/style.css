@@ -1,4 +1,39 @@
-* {
+body{
+    background-color: #000;
+    font-family: 'fantasy';
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    width:500px;
+    height: 450px;
+    boarder-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    margin: 60px auto;
+    text-align: center;
+    position:relative;
+    z-index: 9999;
+
+}
+.wrapper .btn-area{
+    height: 45px;
+    width: 100%;
+    background-color: #000000;
+    bborarder-radius: 50px;
+    position: relative;
+    line-height: 45;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+
+
+/*{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -13,7 +48,7 @@ h1 {
     opacity: 1;
     color: #fff;
     font-size: 72px;
-    text-align: center;
+    text-align: ;
     padding-top: 40vh;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
     z-index: 9999;
@@ -21,7 +56,7 @@ h1 {
 }
 
 #bg {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     bottom: 0;
@@ -48,19 +83,5 @@ h1 {
 .fade-out {
     opacity: 0;
     transition: opacity 1s;  /* Adjust duration as needed */
-}
+/*}
 
-/* ... other CSS ... */
-
-#header2 {
-    opacity: 0;
-    position: relative;
-    top: 50px;  /* Adjust this to move the text lower */
-    font-size: smaller;
-    transition: opacity 2s;  /* Adjust duration as needed */
-    display: none; // Start off as hidden
-}
-
-.hidden {
-    display: none;
-}

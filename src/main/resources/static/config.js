@@ -111,42 +111,16 @@ particlesJS("bg", {
     "retina_detect": true
 });
 
+var myButton2 = document.getElementById("myButton1");
+var myButton1 = document.getElementById("myButton2");
 
-/* ---- stats.js config ---- */
+var wordsForButton2 = ["Dog", "Cat", "Fish"];
 
-var count_particles, stats, update;
-stats = new Stats;
-stats.setMode(0);
-stats.domElement.style.position = 'absolute';
-stats.domElement.style.left = '0px';
-stats.domElement.style.top = '0px';
-document.body.appendChild(stats.domElement);
-count_particles = document.querySelector('.js-count-particles');
-update = function() {
-    stats.begin();
-    stats.end();
-    if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
-        count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
-    }
-    requestAnimationFrame(update);
-};
-requestAnimationFrame(update);
+function fetchAndDisplayWord() {
+    var randomIndex = Math.floor(Math.random() * wordsForButton2.length);
 
-function fadeAndReplace() {
-    var h1 = document.getElementById('header1');
-    var h2 = document.getElementById('header2');
+    var randomWord = wordsForButton2[randomIndex];
 
-    // Apply the fade-out effect
-    h1.classList.add('fade-out');
-
-    // Wait for the fade to complete, then hide the h1 and show the h2
-    setTimeout(function() {
-        h1.style.display = 'none';
-        h2.style.opacity = '1';
-    }, 2000);  // This timeout should match the fade duration in the CSS
+    myButton2.textContent = randomWord;
 }
-
-// Wait for 5 seconds after page load, then call fadeAndReplace
-window.onload = function() {
-    setTimeout(fadeAndReplace, 5000); // 5000 milliseconds = 5 seconds
-}
+myButton1.addEventListener("click", fetchAndDisplayWord);
