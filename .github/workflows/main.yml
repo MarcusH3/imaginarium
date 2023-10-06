@@ -29,7 +29,8 @@ jobs:
         run: |
           ./gradlew checkstyleMain
           ./gradlew checkstyleTest
-          ./gradlew checkstyleInttest
+          ./gradlew checkstyleIntegrationTest
+          
 
   unit-tests:
     runs-on: ubuntu-latest
