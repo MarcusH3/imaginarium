@@ -10,17 +10,16 @@ import java.util.List;
 @Service
 public class QuoteLoader {
 
-    private List<String> quotes;
+    private QuoteFileService quoteData;
 
     @PostConstruct
     public void loadQuotes() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         InputStream inputStream = new ClassPathResource("quote.json").getInputStream();
-        QuoteData quoteData = mapper.readValue(inputStream, QuoteData.class);
-        this.quotes = quoteData.getQuotes();
+        this.quoteData = mapper.readValue(inputStream, QuoteFileService.class);
     }
 
     public List<String> getQuotes() {
-        return quotes;
+        return quoteData.getQuotes();
     }
 }
