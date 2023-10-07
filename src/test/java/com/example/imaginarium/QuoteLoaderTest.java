@@ -11,35 +11,35 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class QuoteLoaderTest {
 
-    private QuoteLoader quoteLoader;
+  private QuoteLoader quoteLoader;
 
-    @BeforeEach
-    void setUp() throws Exception {
-        quoteLoader = new QuoteLoader();
+  @BeforeEach
+  void setUp() throws Exception {
+    quoteLoader = new QuoteLoader();
 
-        quoteLoader.loadQuotes();
-    }
+    quoteLoader.loadQuotes();
+  }
 
-    @AfterEach
-    void tearDown() {
-    }
+  @AfterEach
+  void tearDown() {
+  }
 
-    @Test
-    void loadQuotes() {
-        List<String> quotes = quoteLoader.getQuotes();
+  @Test
+  void loadQuotes() {
+    List<String> quotes = quoteLoader.getQuotes();
 
-        assertNotNull(quotes, "Quotes should be loaded");
-        assertFalse(quotes.isEmpty(), "Quotes should not be empty after loading");
-    }
+    assertNotNull(quotes, "Quotes should be loaded");
+    assertFalse(quotes.isEmpty(), "Quotes should not be empty after loading");
+  }
 
-    @Test
-    void getQuotes() {
-        List<String> quotes = quoteLoader.getQuotes();
+  @Test
+  void getQuotes() {
+    List<String> quotes = quoteLoader.getQuotes();
 
-        assertNotNull(quotes, "Quotes should not be null");
-        assertFalse(quotes.isEmpty(), "Quotes should not be empty");
+    assertNotNull(quotes, "Quotes should not be null");
+    assertFalse(quotes.isEmpty(), "Quotes should not be empty");
 
-        String exampleQuote = "si";
-        assertTrue(quotes.contains(exampleQuote), "Expected quote not found");
-    }
+    String exampleQuote = "si";
+    assertTrue(quotes.contains(exampleQuote), "Expected quote not found");
+  }
 }
