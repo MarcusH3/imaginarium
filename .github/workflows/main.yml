@@ -147,7 +147,7 @@ jobs:
           merged_image="$DOCKER_IMAGE:$current_branch"
           echo "Docker image address: $merged_image"
 
-  deploy:
+   deploy:
     if: github.event_name == 'pull_request' && github.head_ref == 'main'
     runs-on: ubuntu-latest
     needs: artifactsetup
@@ -157,6 +157,7 @@ jobs:
       - name: Display Docker image name
         run: echo "Docker image would be: $IMAGE"
         env:
-          IMAGE: "${{ github.repository }}:${{ github.head_ref }}"
+          IMAGE: ${{ github.repository }}:${{ github.head_ref }}
       - name: Deploy Application
         run: echo "Deployed to https://github.com/MarcusH3/imaginarium/pkgs/container/imaginarium"
+
