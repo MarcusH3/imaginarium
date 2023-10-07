@@ -104,6 +104,7 @@ jobs:
           java -jar build/libs/imaginarium-0.0.1-SNAPSHOT.jar &
           ./gradlew systemTest
 
+
   artifactsetup:
     runs-on: ubuntu-latest
     permissions:
