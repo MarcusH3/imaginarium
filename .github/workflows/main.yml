@@ -103,7 +103,6 @@ jobs:
           ./gradlew bootJar
           java -jar build/libs/imaginarium-0.0.1-SNAPSHOT.jar &
           ./gradlew systemTest
-
   artifactsetup:
     runs-on: ubuntu-latest
     permissions:
@@ -146,7 +145,6 @@ jobs:
           DOCKER_IMAGE="your-docker-registry.com/your-repo"
           merged_image="$DOCKER_IMAGE:$current_branch"
           echo "Docker image address: $merged_image"
-
   deploy:
     if: github.event_name == 'pull_request' && github.head_ref == 'main'
     runs-on: ubuntu-latest
