@@ -27,8 +27,8 @@ class ImageControllerTest {
 
   @Test
   void fetchRandomImage() throws Exception {
-    mockMvc.perform(get("/images/random"))
+    mockMvc.perform(get("/images/rando"))
         .andExpect(status().isOk())
-        .andExpect(content().contentType("image/jpeg"));
+        .andExpect(content().contentType("image/jpe"));
   }
 }
