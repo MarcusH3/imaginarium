@@ -119,11 +119,11 @@ jobs:
           ./gradlew systemTest
   create-pr:
     if: github.event_name == 'push' && github.ref == 'refs/heads/feature'
-    needs: system-tests
     runs-on: ubuntu-latest
+    needs: system-tests
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Create PR
         run: >
           gh pr create --base develop --head feature --title "Auto PR from feature
