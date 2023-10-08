@@ -2,9 +2,10 @@ name: WorkflowImag
 'on':
   push:
     branches:
-      - main
-      - develop
-      - feature
+      - feature/*
+  pull_request:
+    branches:
+    -  develop
 jobs:
   checkstyle:
     runs-on: ubuntu-latest
