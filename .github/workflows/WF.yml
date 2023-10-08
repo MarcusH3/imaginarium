@@ -102,6 +102,7 @@ jobs:
           ./gradlew bootJar
           java -jar build/libs/imaginarium-0.0.1-SNAPSHOT.jar &
           ./gradlew systemTest
+          
   dockerize: 
     runs-on: ubuntu-latest
     permissions:
