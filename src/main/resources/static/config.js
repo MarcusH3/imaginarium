@@ -136,19 +136,16 @@ function fetchAndDisplayImage() {
             img.src = url;
             var imageContainer = document.getElementById('imageContainer');
 
-            // Clear any previous image from the container
             while (imageContainer.firstChild) {
                 imageContainer.removeChild(imageContainer.firstChild);
             }
 
-            // Append the new image
             imageContainer.appendChild(img);
         })
         .catch(error => {
             console.error('There was an error fetching the image!', error);
         });
 }
-
 myButton1.addEventListener("click", fetchAndDisplayImage);
 
 myButton1.addEventListener("click", fetchAndDisplayWord );
