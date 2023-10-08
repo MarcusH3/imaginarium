@@ -163,5 +163,5 @@ jobs:
         env:
           IMAGE: ${{ github.repository }}:${{ github.head_ref }}"
       - name: Deploy Application
-        run:  |
-        echo "Deployed to https://github.com/MarcusH3/imaginarium/pkgs/container/imaginarium"
+        run: |
+          echo "Deployed to https://github.com/MarcusH3/imaginarium/pkgs/container/imaginarium"
