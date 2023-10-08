@@ -3,8 +3,7 @@ name: 'Build and run tests'
 on:
   push:
    branches:
-   - main
-   - develop
+   - "!main"
   workflow_dispatch:
 
 jobs:
