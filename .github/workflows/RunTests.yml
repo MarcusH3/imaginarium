@@ -2,6 +2,8 @@ name: 'Build and run tests'
 
 on:
   push:
+  workflow_dispatch:
+
 jobs:
   checkstyle:
     runs-on: ubuntu-latest
