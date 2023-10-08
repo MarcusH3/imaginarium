@@ -117,13 +117,6 @@ jobs:
           ./gradlew bootJar
           java -jar build/libs/imaginarium-0.0.1-SNAPSHOT.jar &
           ./gradlew systemTest
-      - name: Add coverage to PR
-        id: jacoco
-        uses: madrapps/jacoco-report@v1.6.1
-        with:
-          paths: >
-            ${{ github.workspace
-            }}/**/build/reports/jacoco/prodNormalDebugCoverage/prodNormalDebugCoverage.xml,
   create-pr:
     if: github.event_name == 'push' && github.ref == 'refs/heads/feature'
     needs: system-tests
