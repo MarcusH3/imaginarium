@@ -2,7 +2,7 @@ name: 'feature and artifact deployer'
 on:
   push:
     branches:
-      - deploy
+      - develop
       - feature**
 
 
