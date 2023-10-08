@@ -1,0 +1,196 @@
+name: 'feature and artifact deployer'
+on:
+  push:
+    branches:
+      - deploy
+      - feature**
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: imaginarium
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: temurin
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
+
+      - name: Make Gradlew Executable
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
+
+      - name: run unit tests
+        run: |
+          ./gradlew unitTest
+
+      - name: Add coverage to PR
+        id: jacoco
+        uses: madrapps/jacoco-report@v1.6.1
+        with:
+          paths: |
+            ${{ github.workspace }}/**/build/reports/jacoco/prodNormalDebugCoverage/prodNormalDebugCoverage.xml,
+            ${{ github.workspace }}/**/build/reports/jacoco/**/debugCoverage.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: 40
+          min-coverage-changed-files: 60
+
+  integrationTest:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    environment: carpooltaxi
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: temurin
+
+      - name: Make Gradlew Executable
+        run: chmod +x ./gradlew
+
+      - name: Run integration tests
+        run: |
+          ./gradlew integrationTest
+  bootJar:
+    runs-on: ubuntu-latest
+    needs:
+      - integrationTest
+    environment: imaginarium
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: temurin
+
+      - name: Make Gradlew Executable
+        run: chmod +x ./gradlew
+
+      - name: bootJar
+        run: |
+          ./gradlew bootJar
+
+      - name: Upload Jar
+        uses: actions/upload-artifact@v3
+        with:
+          name: app
+          path: build/libs/imaginarium-0.0.1-SNAPSHOT.jar
+
+  systemTest:
+    runs-on: ubuntu-latest
+    needs: bootJar
+    environment: imaginarium
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: temurin
+
+      - name: Make Gradlew Executable
+        run: chmod +x ./gradlew
+
+      - name: Download Jar
+        uses: actions/download-artifact@v3
+        with:
+          name: app
+
+      - name: run-app
+        run: |
+          java -jar imaginarium-0.0.1-SNAPSHOT.jar &
+      - name: Run all system tests
+        run: |
+          ./gradlew systemTest
+  dockerize:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    needs:
+      -   systemTest
+    #if: github.ref == 'refs/heads/main'
+    env:
+      REGISTRY: ghcr.io
+      IMAGE_NAME: ${{ github.repository }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download JAR Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: app
+          path: build/libs
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Print link
+        run: |
+          current_branch=$(git branch --show-current)
+          DOCKER_IMAGE="your-docker-registry.com/your-repo"
+          merged_image="$DOCKER_IMAGE:$current_branch"
+          echo "Docker image address: $merged_image"
+  deploy:
+    if: github.event_name == 'pull_request' && github.head_ref == 'main'
+    runs-on: ubuntu-latest
+    needs: dockerize
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Display Docker image name
+        run: "echo Docker image would be: $IMAGE"
+        env:
+          IMAGE: ${{ github.repository }}:${{ github.head_ref }}"
+
+      - name: Deploy Your Application
+        run: |
+          echo "Deployed to https://github.com/MarcusH3/imaginarium/pkgs/container/imaginarium"
