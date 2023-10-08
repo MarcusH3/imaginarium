@@ -124,7 +124,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-    
       - name: Create PR
         run: >
           gh pr create --base develop --head feature --title "Auto PR from feature
