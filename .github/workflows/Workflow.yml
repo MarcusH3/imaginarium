@@ -1,7 +1,6 @@
----
 name: Workflow
 on:
-  push: null
+  push: 
 jobs:
   checkstyle:
     runs-on: ubuntu-latest
