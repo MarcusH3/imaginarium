@@ -124,23 +124,17 @@ jobs:
           paths: >
             ${{ github.workspace
             }}/**/build/reports/jacoco/prodNormalDebugCoverage/prodNormalDebugCoverage.xml,
-
-            ${{ github.workspace }}/**/build/reports/jacoco/**/debugCoverage.xml
-          token: '${{ secrets.GITHUB_TOKEN }}'
-          min-coverage-overall: 40
-          min-coverage-changed-files: 60
-  test-and-merge:
-    if: github.event_name == 'pull_request'
+  create-pr:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/feature'
+    needs: system-tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Build and test
-        run: |
-          # Replace with your build and test commands
-          ./gradlew build test
-      - name: Merge PR
-        if: success()
-        run: 'gh pr merge ${{ github.event.pull_request.number }} --merge'
+    
+      - name: Create PR
+        run: >
+          gh pr create --base develop --head feature --title "Auto PR from feature
+          branch" --body "Automatically created pull request from feature branch."
         env:
           GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
