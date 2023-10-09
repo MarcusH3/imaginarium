@@ -1,10 +1,19 @@
-# imaginarium
+# Imaginarium!
 
+````
+,--.                         ,--.                       ,--.                   
+|  |,--,--,--. ,--,--. ,---. `--',--,--,  ,--,--.,--.--.`--',--.,--.,--,--,--.
+|  ||        |' ,-.  || .-. |,--.|      \' ,-.  ||  .--',--.|  ||  ||        |
+|  ||  |  |  |\ '-'  |' '-' '|  ||  ||  |\ '-'  ||  |   |  |'  ''  '|  |  |  |
+`--'`--`--`--' `--`--'.`-  / `--'`--''--' `--`--'`--'   `--' `----' `--`--`--'
+````
 ```
 Imaginarium is a Spring Boot application designed to stimulate your imagination. 
-Simply press the Imagine! button to get inspired.
+Simply press the Imagine! button to get inspired, at your own risk.
 
 ```
+
+
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
