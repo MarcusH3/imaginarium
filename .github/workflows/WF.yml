@@ -6,6 +6,7 @@ name: WorkflowImag
   pull_request:
     branches:
     -  develop
+    -  main
 jobs:
   checkstyle:
     runs-on: ubuntu-latest
