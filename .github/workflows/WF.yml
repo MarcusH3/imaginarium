@@ -139,6 +139,7 @@ jobs:
         uses: action/download-artifact@v3
         with:
           name: app
+          path: build/libs
       - name: Run-application
         run: |
           chmod +x gradlew
