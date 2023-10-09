@@ -136,7 +136,7 @@ jobs:
           java-version: '17'
           distribution: temurin
       - name: Download Jar
-        uses: action/download-artifact@v3
+        uses: actions/download-artifact@v3
         with:
           name: app
           path: build/libs
