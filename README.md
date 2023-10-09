@@ -1,8 +1,7 @@
 # imaginarium
 
 ```
-maginarium is a Spring Boot application designed to stimulate your imagination. 
-Simply press the 'Imagine!' button to get inspired. 
+This will create a mergeconflict
 ```
 ## Table of Contents
 - [Installation](#installation)
