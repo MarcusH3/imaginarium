@@ -1,8 +1,8 @@
 # imaginarium
 
 ```
-maginarium is a Spring Boot application designed to stimulate your imagination. 
-Simply press the 'Imagine!' button to get inspired.
+Imaginarium is a Spring Boot application designed to stimulate your imagination. 
+Simply press the Imagine! button to get inspired.
 
 ```
 ## Table of Contents
