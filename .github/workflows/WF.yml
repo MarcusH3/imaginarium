@@ -138,7 +138,7 @@ jobs:
       - name: Download Jar
         uses: action/download-artifact@v3
         with:
-          name: application
+          name: app
       - name: Run-application
         run: |
           chmod +x gradlew
