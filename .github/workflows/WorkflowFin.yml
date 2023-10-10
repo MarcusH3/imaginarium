@@ -151,6 +151,11 @@ jobs:
         with:
           name: app
           path: build/libs/imaginarium-0.0.1-SNAPSHOT.jar
+      - name: Generate jacoco test report and build jar
+        run: |
+          chmod +x gradlew
+          ./gradlew jacocoTestReport
+          ./gradlew build
       - name: Add coverage to PR
         id: jacoco
         uses: madrapps/jacoco-report@v1.6.1
