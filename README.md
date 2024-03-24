@@ -6,9 +6,10 @@ Creating a random word & image generator called Imaginarium
 
 
 ### 1. Overview
-Imaginarium is an innovative Spring Boot application engineered to ignite and stimulate your imagination. 
-With its sleek and user-friendly interface, Imaginarium offers a unique platform for users to explore and 
-awaken their creativity with just a simple click of the "Imagine!" button to generate a random word and an image.
+Imaginarium is a Spring Boot application engineered to ignite and stimulate your imagination. 
+With its sleek and user-friendly interface, Imaginarium offers a  platform for users to explore and 
+awaken their creativity with just a simple click of the "Imagine!" button to generate a random word and an image of space placed upon 
+the night starry sky.
 
 ### 2. Installation
 In order to get started. Fork or clone the repo using: 
